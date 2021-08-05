@@ -17,10 +17,8 @@ def imap_login(login, password, imap, focus_email):
 
         messages = imapObj.search(['FROM', focus_email]) #script follow one e-mail
 
-
         for msgid, data in imapObj.fetch(messages, ['ENVELOPE']).items():   #get emails from inbox
             envelope = data[b'ENVELOPE']
-
 
             rawMessages = imapObj.fetch(messages, ['BODY[]'])
 
