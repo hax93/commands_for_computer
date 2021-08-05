@@ -17,7 +17,3 @@ def send_email(sendTO, text_subject, text):
     if sendmailStatus != {}:
         print('There was a problem sending e-mail to the address: %s',  email)
     smtpObj.quit()
-
-
-
-
