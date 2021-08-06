@@ -32,7 +32,7 @@ def count_word(filename):
                     file = file_object.read()
                     lines = file.split('\n')
 
-                    send_email_attachment('where send email with attachement', 'attachment',
+                    send_email_attachment('where send email@ with attachement', 'attachment',
                                           f'folder with documents txt, xlsx, pdf etc{lines[1]}')
     except ValueError:
         pass
