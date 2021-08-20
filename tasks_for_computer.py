@@ -1,31 +1,43 @@
 """tasks for computer
 1 - if we send subjet:secret and in text:ls *.xlsx
-we get return email with powershell log all files
+we get return email with attachment log all files
 who have .xlsx.
 2 - if we know what name file we got in computer,
 we can send subject:download and text: budget.xlsx
 then computer send email attachment with this file"""
 #   remember get \\ for directory
-import time
-import os
-from powershell_automate import powershell_open, commands_with_log, back_directory
+import os, glob
 from email_attachment import send_email_attachment
 
-def count_word(filename):
+def count_word(filename, file_extension, folder_scan):
     try:
-        password = 'secret'
-        download = 'download'
+        data = []
+        password = 'secret'        #we can change 'secret' or 'pobierz'
+        download = 'pobierz'
+
         with open(filename, 'r+', encoding="UTF-8") as file_object:
             file = file_object.read()
             lines = file.split('\n')
 
             if password in file:
-                powershell_open('here powershell directory')
-                commands_with_log('folder with documents txt, xlsx, pdf etc', 'directory your log_powershell.txt', lines[1])
-                send_email_attachment('where send email with attachement', 'attachment', 'directory your log_powershell.txt')
-                time.sleep(4)
-                back_directory('directory where u have all scripts this program')
-                time.sleep(2)
+
+                command = lines[1]
+                search = command   #command from email
+
+                os.chdir(folder_scan)   #scan and try result output to file_extension.txt
+                for direct in glob.glob(f'{search}'):
+                    data.append(direct)
+
+                my_string = ""
+
+                for i in data:
+                    my_string += ('{} \n').format(i)
+                    
+                with open(file_extension, 'w', encoding='utf-8') as files:
+                    files.write(my_string)
+                
+                send_email_attachment('where send email@ with attachement',
+                                 'attachment', 'file_extension.txt direct: send result scan')
         
             elif download in file:
                 with open(filename, 'r+', encoding="UTF-8") as file_object:
