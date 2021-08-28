@@ -1,5 +1,5 @@
 """tasks for computer
-1 - if we send subjet:secret and in text:ls *.xlsx
+1 - if we send subjet:secret and in text:*.xlsx
 we get return email with attachment log all files
 who have .xlsx.
 2 - if we know what name file we got in computer,
