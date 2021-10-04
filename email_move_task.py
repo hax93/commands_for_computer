@@ -4,8 +4,10 @@ import imapclient
 import pyzmail
 import sys
 import time
+import getpass
 
-filename = 'task/tasks.txt' #directory txt tasks
+user = (getpass.getuser())
+filename = f'c:\\Users\\{user}\\Documents\\orders\\tasks.txt' #directory txt tasks
 
 def imap_login(login, password, imap, focus_email):
 
