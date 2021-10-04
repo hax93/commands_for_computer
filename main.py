@@ -1,10 +1,20 @@
 import time
 from email_move_task import imap_login
 from tasks_for_computer import count_word
+from create_files import create_folder
 
-filename = 'task/tasks.txt'
-file_extension = 'task/file_extension.txt'
-folder_scan = 'where do you want to check/download files'  
+try:
+    create_folder('tasks.txt')
+    create_folder('file_extension')
+except FileExistsError:
+    pass
+
+user = (getpass.getuser())
+
+filename = f'c:\\Users\\{user}\\Documents\\orders\\tasks.txt'
+file_extension = f'c:\\Users\\{user}\\Documents\\orders\\file_extension.txt'
+#where do you want to check/download files
+folder_scan = f'c:\\Users\\{user}\\Documents'
 
 while True:                        
     imap_login('xyz@xyz.com', 'password', 'imap', 'watch_email')

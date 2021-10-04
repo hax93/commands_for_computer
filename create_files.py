@@ -15,9 +15,3 @@ def create_folder(name):
 
     except FileNotFoundError:
         open(filename, 'w')
-
-try:
-    create_folder('tasks.txt')
-    create_folder('file_extension.txt')
-except FileExistsError:
-    pass
