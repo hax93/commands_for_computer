@@ -1,17 +1,18 @@
 import getpass
 import os
 
-def create_folder(name):
-    user = (getpass.getuser())
-    filename = f'c:\\Users\\{user}\\Documents\\orders\\{name}'
-    cwd = os.path.dirname(__file__) + f'\\{name}'
+user = (getpass.getuser())
+
+def create_folder():
     try:
-        os.mkdir(f'c:\\Users\\{user}\\Documents\\orders')
+        os.mkdir(f'c:\\Users\\{user}\\Documents\\backup')
     except:
         pass
     
-    try:
-        open(filename, 'r')
-
-    except FileNotFoundError:
+def create_files(name):
+    filename = f'c:\\Users\\{user}\\Documents\\backup\\{name}.txt'
+    
+    if os.path.exists(filename) is True:
+            True
+    else:
         open(filename, 'w')
