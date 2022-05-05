@@ -43,6 +43,7 @@ def start_program():
                        results('authentication', 4),
                        results('authentication', 2), 
                        results('authentication', 5), typ='')
+            
             check_words(orders, result, folder_scan)
             #   clear txt
             open(orders, 'w').close()
