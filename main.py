@@ -1,6 +1,7 @@
 import time
 import getpass
 import traceback
+import sys
 from email_move_task import email_task
 from tasks_for_computer import check_words
 from create_files import *
@@ -30,32 +31,32 @@ def add_password_program():
     add_password_table('hash')
     hash_db(passw)
     add_password('hash')
-    print("PASSWORD ADDED")
+    print(">PASSWORD ADDED\n")
 
 def start_program():
     check = getpass.getpass('Typing Password:\n>>>>>')
+    try:
+        if hash_db(check) == results('hash', 2):
+            print("Correct!")
+            while True:
+                time.sleep(900)
+                email_task(orders, results('authentication', 3), 
+                        results('authentication', 4),
+                        results('authentication', 2), 
+                        results('authentication', 5), typ='')
+                
+                check_words(orders, result, folder_scan)
+                #   clear txt
+                open(orders, 'w').close()
+                open(result, 'w').close()
 
-    if hash_db(check) == results('hash', 2):
-        print("Correct!")
-        while True:
-            time.sleep(900)
-            email_task(orders, results('authentication', 3), 
-                       results('authentication', 4),
-                       results('authentication', 2), 
-                       results('authentication', 5), typ='')
-            
-            check_words(orders, result, folder_scan)
-            #   clear txt
-            open(orders, 'w').close()
-            open(result, 'w').close()
-
-    else:
-        print("Password Wrong :<")
+    except Exception as error:
+        print(f"create password: {type(error).__name__}".upper())
     
 def change_passw():
     try:
         del_table('hash')
-        print("Password Delete")
+        print(">Password Delete")
     except:
         print("Data not available, create password.")
 
@@ -65,9 +66,12 @@ def del_db():
     except FileNotFoundError:
         traceback.print_exc()
         print()
+        
+def exit_program():
+    print("SEE YOU NEXT TIME!")
+    return sys.exit()
 
-if __name__ =='__main__':
-    
+def main():
     txt = ['inbox', 'results']
     create_folder()
     for i in txt:
@@ -94,7 +98,9 @@ if __name__ =='__main__':
             case '4':
                 del_db()
             case '5':
-                print("SEE YOU NEXT TIME!\n")
-                break
+                exit_program()
             case _:
-                print("Typing number!\n")
+                print("Typing number!\n")  
+
+if __name__ =='__main__':
+    main()
