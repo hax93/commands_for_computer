@@ -3,3 +3,6 @@ From email (e.g from mobile) send tasks for your computer at home. Get your atta
 
 ## Requirements
 * [Python 3.10.4+](https://www.python.org/downloads)
+* System Operation Windows (soon add Linux path folders)
+* Active 2 accounts E-mail (prefer 3)
+* Prepare: E-MAILS, PASSWORDS, SMTP, IMAP
