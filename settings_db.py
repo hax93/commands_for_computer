@@ -82,16 +82,19 @@ def del_db_file():
     print("Delete Database")
     
 def results(table, n): 
-    all = 'data'
-    db = Database(filename)
-    output = db.fetch_all(table, data=all)
+    try:
+        all = 'data'
+        db = Database(filename)
+        output = db.fetch_all(table, data=all)
     
-    if table == 'hash':
-        for i in output:
-            return i[n]
-    else:    
-        for i in output:
-            return i[n]   
+        if table == 'hash':
+            for i in output:
+                return i[n]
+        else:    
+            for i in output:
+                return i[n]   
+    except:
+        return False
         
 def hash_db(string):
     # change hashlib if didn't working

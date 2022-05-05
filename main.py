@@ -107,7 +107,7 @@ def main():
                 print(menu[i][1]()) 
             except Exception as error:
                 print(f"ERROR: {type(error).__name__}\n"
-                    f"typing number 0{1 - len(menu)}".upper())
+                    f"typing number 0{1 - len(menu)}\n".upper())
                 
         navigate(select())
 
