@@ -31,7 +31,7 @@ def add_password_program():
     add_password_table('hash')
     hash_db(passw)
     add_password('hash')
-    print(">PASSWORD ADDED\n")
+    return "\n>PASSWORD ADDED\n"
 
 def start_program():
     check = getpass.getpass('Typing Password:\n>>>>>')
@@ -56,9 +56,9 @@ def start_program():
 def change_passw():
     try:
         del_table('hash')
-        print(">Password Delete")
+        return ">Password Delete"
     except:
-        print("Data not available, create password.")
+        return "Data not available, create password."
 
 def del_db():
     try:
@@ -71,6 +71,10 @@ def exit_program():
     print("SEE YOU NEXT TIME!")
     return sys.exit()
 
+def select():
+    output = int(input('-'))
+    return output
+
 def main():
     txt = ['inbox', 'results']
     create_folder()
@@ -78,29 +82,34 @@ def main():
         create_files(i)
 
     while True:
-        print("0. ADD Data email.")
-        print("1. ADD password.")
-        print("2. START program.")
-        print("3. CHANGE password.")
-        print("4. Delete ALL data.")
-        decision = input("5. EXIT program.\n-")
+        description = {}
         
-        match decision:
-            case '0':
-                data_email()
-                print()
-            case '1':
-                add_password_program()
-            case '2':
-                start_program()
-            case '3':
-                change_passw()            
-            case '4':
-                del_db()
-            case '5':
-                exit_program()
-            case _:
-                print("Typing number!\n")  
+        if bool(results('hash', 2)) is False:
+            description[1] = ["ADD password.", add_password_program]
+            
+        if bool(results('authentication', 0)) is False:
+            description[2] = ["ADD Data email.", data_email]
+    
+        if bool(results('authentication', 0)) and bool(results('hash', 0)) is True:
+            description[3] = ["START program.", start_program]
+            description[4] = ["CHANGE password.", change_passw]
+        
+        description[5] = ["DELETE all data.", del_db]
+        description[6] = ["EXIT program.", exit_program]
+            
+        menu = {}  
+        for n, v in enumerate(description.items()):
+            print(f"{n}. {v[1][0]}")
+            menu[n] = [v[1][0], v[1][1]] 
+
+        def navigate(i):
+            try:
+                print(menu[i][1]()) 
+            except Exception as error:
+                print(f"ERROR: {type(error).__name__}\n"
+                    f"typing number 0{1 - len(menu)}".upper())
+                
+        navigate(select())
 
 if __name__ =='__main__':
     main()
