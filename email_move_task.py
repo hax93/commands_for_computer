@@ -1,6 +1,6 @@
-import imaplib
 import email
 import getpass
+import imaplib
 
 user = getpass.getuser()
 

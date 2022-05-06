@@ -1,8 +1,9 @@
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.base import MIMEBase
-from email import encoders
 import os
+import smtplib
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+
 
 def send_email_attachment(sender_email, smtp, password, sendTO, 
                           subject, file_ways):

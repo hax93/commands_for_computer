@@ -1,7 +1,8 @@
-import os
-import glob
 import getpass
+import glob
 import logging
+import os
+
 from email_attachment import send_email_attachment
 from settings_db import hash_db, results
 

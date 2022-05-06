@@ -1,11 +1,12 @@
-import time
 import getpass
-import traceback
 import sys
-from email_move_task import email_task
-from tasks_for_computer import check_words
+import time
+import traceback
+
 from create_files import *
+from email_move_task import email_task
 from settings_db import *
+from tasks_for_computer import check_words
 
 user = getpass.getuser()
 
