@@ -6,3 +6,6 @@ From email (e.g from mobile) send tasks for your computer at home. Get your atta
 * System Operation Windows (soon add Linux path folders)
 * Active 2 accounts E-mail (prefer 3)
 * E-MAILS, PASSWORDS, SMTP, IMAP
+
+## Soon...
+* Add GUI
