@@ -72,10 +72,37 @@ def exit_program():
     print("SEE YOU NEXT TIME!")
     return sys.exit()
 
+menu = {}  
+def menu_options():  
+    description = {}
+    if bool(results('hash', 2)) is False:
+        description[1] = ["ADD password.", add_password_program]
+        
+    if bool(results('authentication', 0)) is False:
+        description[2] = ["ADD Data email.", data_email]
+
+    if bool(results('authentication', 0)) and bool(results('hash', 0)) is True:
+        description[3] = ["START program.", start_program]
+        description[4] = ["CHANGE password.", change_passw]
+    
+    description[5] = ["DELETE all data.", del_db]
+    description[6] = ["EXIT program.", exit_program]
+        
+    for n, v in enumerate(description.items()):
+        menu[n] = [v[1][0], v[1][1]] 
+        print(f"{n}. {v[1][0]}")
+            
 def select():
     output = int(input('-'))
     return output
 
+def navigate(i):
+    try:
+        print(menu[i][1]()) 
+    except Exception as error:
+        return (f"ERROR: {type(error).__name__}\n"
+            f"typing number 0{1 - len(menu)}\n".upper())
+        
 def main():
     txt = ['inbox', 'results']
     create_folder()
@@ -83,33 +110,7 @@ def main():
         create_files(i)
 
     while True:
-        description = {}
-        
-        if bool(results('hash', 2)) is False:
-            description[1] = ["ADD password.", add_password_program]
-            
-        if bool(results('authentication', 0)) is False:
-            description[2] = ["ADD Data email.", data_email]
-    
-        if bool(results('authentication', 0)) and bool(results('hash', 0)) is True:
-            description[3] = ["START program.", start_program]
-            description[4] = ["CHANGE password.", change_passw]
-        
-        description[5] = ["DELETE all data.", del_db]
-        description[6] = ["EXIT program.", exit_program]
-            
-        menu = {}  
-        for n, v in enumerate(description.items()):
-            print(f"{n}. {v[1][0]}")
-            menu[n] = [v[1][0], v[1][1]] 
-
-        def navigate(i):
-            try:
-                print(menu[i][1]()) 
-            except Exception as error:
-                print(f"ERROR: {type(error).__name__}\n"
-                    f"typing number 0{1 - len(menu)}\n".upper())
-                
+        menu_options()              
         navigate(select())
 
 if __name__ =='__main__':
